@@ -25,7 +25,7 @@ import com.carto.ui.MapView
 import com.carto.vectorelements.Line
 import com.carto.vectorelements.Marker
 import com.carto.vectorelements.Point
-import com.example.tobechain.util.ObjectColor
+import com.example.tobechain.utils.ObjectColor
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 

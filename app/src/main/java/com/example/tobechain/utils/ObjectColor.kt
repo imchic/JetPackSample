@@ -1,4 +1,4 @@
-package com.example.tobechain.util
+package com.example.tobechain.utils
 
 import com.carto.graphics.Color
 

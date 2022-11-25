@@ -1,4 +1,4 @@
-package com.example.tobechain.component
+package com.example.tobechain.ui.component
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
