@@ -15,8 +15,8 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.tobechain.ui.theme.component.showToolbar
-import com.example.tobechain.ui.theme.component.setDrawerLayoutMaterial3
+import com.example.tobechain.component.setDrawerLayoutMaterial3
+import com.example.tobechain.component.showToolbar
 import com.example.tobechain.ui.theme.sampleAppTheme
 
 

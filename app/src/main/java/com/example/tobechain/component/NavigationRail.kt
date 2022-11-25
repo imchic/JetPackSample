@@ -1,4 +1,4 @@
-package com.example.tobechain.ui.theme.component
+package com.example.tobechain.component
 
 import android.annotation.SuppressLint
 import android.util.Log

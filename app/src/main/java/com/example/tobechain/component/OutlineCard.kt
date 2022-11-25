@@ -1,6 +1,6 @@
 @file:OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterial3Api::class)
 
-package com.example.tobechain.ui.theme.component
+package com.example.tobechain.component
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.ElevatedCard

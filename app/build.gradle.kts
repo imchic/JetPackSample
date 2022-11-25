@@ -110,6 +110,8 @@ dependencies {
     implementation(Dependency.Compose.UI_TOOLING_PREVIEW)
     implementation(Dependency.Compose.UI_TOOLING)
 
+    implementation(Dependency.UI.LOTTIE_COMPOSE)
+
     // Hilt
     implementation(Dependency.Google.HILT)
     kapt(Dependency.Google.HILT_COMPILER)

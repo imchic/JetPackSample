@@ -1,4 +1,4 @@
-package com.example.tobechain.ui.theme.component
+package com.example.tobechain.component
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.MaterialTheme

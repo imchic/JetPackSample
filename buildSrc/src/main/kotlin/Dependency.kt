@@ -9,6 +9,9 @@ object Dependency {
     // COMPOSE
     const val COMPOSE_VERSION = "1.4.0-alpha01"
 
+    // LOTTIE
+    const val LOTTIE_VERSION = "5.2.0"
+
     // HILT
     const val HILT_VERSION = "2.44"
 
@@ -45,6 +48,10 @@ object Dependency {
 
     object Map {
         const val CARTO_MAP_SDK = "com.carto:carto-mobile-sdk:4.4.6@aar"
+    }
+
+    object UI {
+        const val LOTTIE_COMPOSE = "com.airbnb.android:lottie-compose:$LOTTIE_VERSION"
     }
 
     object Test {

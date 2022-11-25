@@ -1,4 +1,4 @@
-package com.example.tobechain.ui.theme.component
+package com.example.tobechain.component
 
 import android.util.Log
 import androidx.compose.foundation.layout.*
@@ -25,7 +25,7 @@ import com.carto.ui.MapView
 import com.carto.vectorelements.Line
 import com.carto.vectorelements.Marker
 import com.carto.vectorelements.Point
-import com.example.tobechain.ui.theme.util.MapColor
+import com.example.tobechain.util.ObjectColor
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -66,6 +66,15 @@ fun setDrawerLayoutMaterial3(
             }
         },
         content = {
+//            Box (
+//                modifier =  Modifier
+//                    .fillMaxSize()
+//                    .padding(paddingValues),
+//                contentAlignment = Alignment.Center,
+//                content = {
+//                    showIntroLottieAnimation()
+//                }
+//            )
             Column(
                 modifier = Modifier.fillMaxSize(),
                 horizontalAlignment = Alignment.CenterHorizontally
@@ -114,7 +123,7 @@ fun addLine(projection: Projection?, view: MapView) {
 
     // 1. Create line style, and line poses
     val lineStyleBuilder = LineStyleBuilder()
-    lineStyleBuilder.color = MapColor.RED
+    lineStyleBuilder.color = ObjectColor.RED
     // Define how lines are joined
     lineStyleBuilder.lineJoinType = LineJoinType.LINE_JOIN_TYPE_ROUND
     lineStyleBuilder.width = 8F
@@ -144,7 +153,7 @@ fun addPoint(projection: Projection?, view: MapView) {
     view.layers.add(vectorLayer)
 
     val pointStyleBuilder = PointStyleBuilder()
-    pointStyleBuilder.color = MapColor.LIME
+    pointStyleBuilder.color = ObjectColor.LIME
     pointStyleBuilder.size = 10f
 
     val point = Point(MapPos(55.880251, 272.365759), pointStyleBuilder.buildStyle())
@@ -158,7 +167,7 @@ private fun addMarker(projection: Projection, view: MapView) {
 
     val markerStyleBuilder = MarkerStyleBuilder()
     markerStyleBuilder.size = 30F
-    markerStyleBuilder.color = MapColor.BROWN
+    markerStyleBuilder.color = ObjectColor.BROWN
     val markerStyle1 = markerStyleBuilder.buildStyle()
 
     val pos1 = MapPos(55.880251, 272.365759)
