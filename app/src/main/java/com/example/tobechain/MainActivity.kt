@@ -12,7 +12,6 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.tobechain.ui.component.TobeChainNavigationRail
@@ -55,8 +54,6 @@ class MainActivity : ComponentActivity() {
         )
 
         val selectedItem = remember { mutableStateOf(iconItems[0]) }
-        val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
-        val snackbarHostState = remember { SnackbarHostState() }
 
         Scaffold { innerPadding ->
             Column(

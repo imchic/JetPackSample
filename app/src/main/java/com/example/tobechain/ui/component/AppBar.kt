@@ -15,7 +15,7 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun showToolbar(
+fun ShowToolbar(
     context: MainActivity,
     drawerState: DrawerState,
     scope: CoroutineScope

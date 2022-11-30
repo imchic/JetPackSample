@@ -5,8 +5,6 @@ import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
@@ -16,14 +14,13 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.tobechain.R
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 fun TobeChainNavigationRail(
     modifier: Modifier,
     iconItems: List<ImageVector>,
     menuItems: List<String>,
-    selectedItem: MutableState<ImageVector>
+    selectedItem: MutableState<ImageVector>,
 ) {
 
     Row {
@@ -44,16 +41,13 @@ fun TobeChainNavigationRail(
         ) {
             iconItems.forEachIndexed { index, item ->
                 NavigationRailItem(
-//                    icon = {
-//                        Icon(item, contentDescription = menuItems[index])
-//                   },
                     icon = {
-                        BadgedBox(badge = { Badge { Text("8") } }) {
+                        //BadgedBox(badge = { Badge { Text("8") } }) {
                             Icon(
                                 item,
                                 contentDescription = menuItems[index]
                             )
-                        }
+                        //}
                     },
                     selected = selectedItem.value == item,
                     onClick = {

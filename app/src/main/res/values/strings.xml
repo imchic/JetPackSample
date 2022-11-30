@@ -1,10 +1,31 @@
 <resources>
+
     <string name="app_name">TobeChain</string>
-    <string name="search">검색</string>
-    <string name="search_address">서울특별시 금천구 벚꽃로 115</string>
     <string name="app_ci">CI</string>
-    <string name="back_button">취소</string
-    ><string name="more_options_button">더보기</string>
-    <string name="editIcon">편집아이콘</string>
-    <string name="editstat">편집상태</string>
+
+    <string name="txt_searchaddress">서울특별시 금천구 벚꽃로 115</string>
+    <string name="txt_editstat">편집상태</string>
+    <string name="txt_map"><font color='#FF0000'>위도:</font> 35.9533 <font color='#FF0000'>경도:</font> 129.5018</string>
+
+    <string name="ic_back">취소</string>
+    <string name="ic_more">더보기</string>
+    <string name="ic_editnote">편집</string>
+    <string name="ic_logout">로그아웃</string>
+    <string name="ic_poweroff">앱 종료</string>
+    <string name="ic_map">지도</string>
+    <string name="ic_map_layers">검색</string>
+    <string name="ic_menu">메뉴</string>
+
+    <string name="ic_locationon">위치</string>
+    <string name="txt_location">위치</string>
+
+    <string name="switch_edit">편집모드 switch</string>
+
+    <string name="txt_editon">편집모드 ON</string>
+    <string name="txt_editoff">편집모드 OFF</string>
+
+    <string name="txt_actionok">확인</string>
+
+    <string name="txt_close">닫기</string>
+
 </resources>
