@@ -9,9 +9,14 @@ dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
         google()
-        mavenCentral()
+        mavenCentral {
+            content {
+                excludeModule("javax.media", "jai_core")
+            }
+        }
         maven {
             url = uri("https://jitpack.io")
+            url = uri ("https://repo.osgeo.org/repository/release/")
         }
         flatDir { dirs("libs") }
     }

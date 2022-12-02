@@ -1,8 +1,8 @@
-package com.example.tobechain.utils
+package com.example.tobechain.map
 
 import com.carto.graphics.Color
 
-sealed class ObjectColor {
+sealed class MapColor {
     object BLACK: Color(0, 0, 0, 255)
     object WHITE: Color(255, 255, 255, 255)
     object RED: Color(255, 0, 0, 255)

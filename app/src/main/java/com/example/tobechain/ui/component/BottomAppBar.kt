@@ -1,33 +1,79 @@
 package com.example.tobechain.ui.component
 
+import androidx.compose.foundation.layout.navigationBarsPadding
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.Check
-import androidx.compose.material.icons.filled.Edit
+import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
 
 @Composable
-fun setBottomAppBarMaterial3() {
+fun TobeChainBottomAppBar(snackbarHostState: SnackbarHostState, scope: CoroutineScope) {
+
+    val actionBarItemsIcon = listOf(
+        Icons.Outlined.ArrowUpward,
+        Icons.Outlined.East,
+        Icons.Outlined.OpenWith,
+        Icons.Outlined.DeleteOutline,
+        Icons.Outlined.CopyAll,
+    )
+
+    val actionBarItemsText = listOf(
+        "층추가",
+        "라인추가",
+        "호추가",
+        "초기화",
+        "그룹영역",
+    )
+
     BottomAppBar(
+        modifier = Modifier
+            .navigationBarsPadding()
+            .padding(24.dp),
+        containerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0.25f),
         actions = {
-            IconButton(onClick = { /* doSomething() */ }) {
-                Icon(Icons.Filled.Check, contentDescription = "Localized description")
+
+            actionBarItemsIcon.forEachIndexed { index, actionIcon ->
+                FilledIconButton(
+                    onClick = {
+                        scope.launch {
+                            snackbarHostState.showSnackbar(
+                                message = actionBarItemsText[index],
+                                actionLabel = "닫기",
+                                duration = SnackbarDuration.Short
+                            )
+                        }
+                    },
+                ) {
+                    Icon(
+                        imageVector = actionIcon,
+                        contentDescription = null,
+                        modifier = Modifier.size(SwitchDefaults.IconSize),
+                    )
+                }
             }
-            IconButton(onClick = { /* doSomething() */ }) {
-                Icon(
-                    Icons.Filled.Edit,
-                    contentDescription = "Localized description",
-                )
-            }
+
         },
         floatingActionButton = {
             FloatingActionButton(
-                onClick = { /* do something */ },
-                containerColor = BottomAppBarDefaults.bottomAppBarFabColor,
-                elevation = FloatingActionButtonDefaults.bottomAppBarFabElevation()
+                onClick = {
+                    scope.launch {
+                        snackbarHostState.showSnackbar(
+                            message = "저장",
+                            actionLabel = "닫기",
+                            duration = SnackbarDuration.Short
+                        )
+                    }
+                },
+                //containerColor = BottomAppBarDefaults.bottomAppBarFabColor,
+                //elevation = FloatingActionButtonDefaults.bottomAppBarFabElevation()
             ) {
-                Icon(Icons.Filled.Add, "Localized description")
+                Icon(Icons.Outlined.Save, contentDescription = null)
             }
         }
     )

@@ -117,7 +117,7 @@ dependencies {
     kapt(Dependency.Google.HILT_COMPILER)
 
     // Map
-    implementation(Dependency.Map.CARTO_MAP_SDK)
+    implementation(Dependency.GIS_ENGINE.CARTO_MAP_SDK)
 
     implementation(Dependency.Test.JUNIT)
     implementation(Dependency.Test.EXT_JUNIT)

@@ -5,7 +5,7 @@
 
     <string name="txt_searchaddress">서울특별시 금천구 벚꽃로 115</string>
     <string name="txt_editstat">편집상태</string>
-    <string name="txt_map"><font color='#FF0000'>위도:</font> 35.9533 <font color='#FF0000'>경도:</font> 129.5018</string>
+    <string name="txt_lonlat"><font color='#FF0000'>위도:</font> 35.9533 <font color='#FF0000'>경도:</font> 129.5018</string>
 
     <string name="ic_back">취소</string>
     <string name="ic_more">더보기</string>

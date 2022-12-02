@@ -2,14 +2,13 @@ package com.example.tobechain.ui.component
 
 import android.content.Context
 import androidx.compose.foundation.background
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.LocationOn
-import androidx.compose.material.icons.outlined.Logout
 import androidx.compose.material.icons.outlined.Map
 import androidx.compose.material.icons.outlined.ModeEdit
-import androidx.compose.material.icons.outlined.PowerSettingsNew
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -19,18 +18,43 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.example.tobechain.R
+import com.example.tobechain.map.MapViewModel
+import com.example.tobechain.ui.theme.RoundShapes
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 @Composable
-fun showMapAppBar(context: Context, snackbarHostState: SnackbarHostState, scope: CoroutineScope) {
+fun TobeMapAppBar(
+    context: Context?,
+    snackbarHostState: SnackbarHostState?,
+    scope: CoroutineScope?,
+    viewModel: MapViewModel
+) {
 
-    var editModeStatus = remember { mutableStateOf(false) }
+    val editModeStatus = remember { mutableStateOf(false) }
+    val editCheckIcon: (@Composable () -> Unit)? = if (editModeStatus.value) {
+        {
+            Icon(
+                imageVector = Icons.Filled.Check,
+                contentDescription = null,
+                modifier = Modifier.size(SwitchDefaults.IconSize),
+            )
+        }
+    } else {
+        null
+    }
 
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .background(MaterialTheme.colorScheme.surface)
+            .padding(24.dp)
+            .background(
+                if (!isSystemInDarkTheme()) {
+                    MaterialTheme.colorScheme.surface.copy(alpha = 0.25f)
+                } else {
+                    MaterialTheme.colorScheme.surface.copy(alpha = 0.75f)
+                }, RoundShapes.small
+            )
     ) {
         Row(
             modifier = Modifier.fillMaxWidth(),
@@ -48,78 +72,68 @@ fun showMapAppBar(context: Context, snackbarHostState: SnackbarHostState, scope:
                     .weight(1f)
                     .padding(10.dp),
                 style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.outline
+                color = MaterialTheme.colorScheme.secondary
             )
             Icon(
-                modifier = Modifier.padding(end = 16.dp),
-                imageVector = Icons.Outlined.PowerSettingsNew,
-                contentDescription = stringResource(id = R.string.ic_poweroff),
-                tint = MaterialTheme.colorScheme.outline
+                modifier = Modifier.padding(start = 10.dp),
+                imageVector = Icons.Outlined.ModeEdit,
+                contentDescription = stringResource(id = R.string.ic_editnote),
+                tint = MaterialTheme.colorScheme.primary
             )
+            Text(
+                modifier = Modifier.padding(10.dp),
+                text = stringResource(id = R.string.txt_editstat),
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.secondary
+            )
+            Switch(
+                modifier = Modifier.padding(10.dp),
+                checked = editModeStatus.value,
+                onCheckedChange = { check ->
+                    editModeStatus.value = check
+                    scope?.launch {
+                        snackbarHostState?.let { state ->
+                            context?.let { mainContext ->
+                                showEditSnackBar(
+                                    state,
+                                    mainContext,
+                                    check
+                                )
+                            }
+                        }
+                    }
+                },
+                thumbContent = editCheckIcon
 
-            Icon(
-                modifier = Modifier.padding(end = 8.dp),
-                imageVector = Icons.Outlined.Logout,
-                contentDescription = stringResource(id = R.string.ic_logout),
-                tint = MaterialTheme.colorScheme.outline
             )
         }
 
         Row(
             modifier = Modifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween
+            horizontalArrangement = Arrangement.Start
         ) {
-            // start
-            LazyRow (
-                verticalAlignment = Alignment.CenterVertically,
-            ) {
-                item {
-                    Icon(
-                        modifier = Modifier.padding(start = 10.dp),
-                        imageVector = Icons.Outlined.ModeEdit,
-                        contentDescription = stringResource(id = R.string.ic_editnote),
-                        tint = MaterialTheme.colorScheme.primary
-                    )
-                    Text(
-                        modifier = Modifier.padding(10.dp),
-                        text = stringResource(id = R.string.txt_editstat),
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.outline
-                    )
-                    Switch(
-                        modifier = Modifier.padding(10.dp),
-                        checked = editModeStatus.value,
-                        onCheckedChange = { check ->
-                            editModeStatus.value = check
-                            scope.launch {
-                                showEditSnackBar(snackbarHostState, context, check)
-                            }
-
-                        }
-                    )
-                }
-            }
-
-            // end
             Row(
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 Icon(
                     imageVector = Icons.Filled.LocationOn,
                     contentDescription = stringResource(id = R.string.ic_locationon),
-                    modifier = Modifier.padding(end = 8.dp),
+                    modifier = Modifier.padding(start = 10.dp),
                     tint = MaterialTheme.colorScheme.error
                 )
                 Text(
-                    text = stringResource(id = R.string.txt_map),
-                    modifier = Modifier.padding(end = 8.dp),
-                    style = MaterialTheme.typography.bodyMedium.copy(
-                        color = MaterialTheme.colorScheme.outline,
-                    ),
+                    //text = stringResource(id = R.string.txt_lonlat),
+                    text = "위도: ${viewModel.lon.value}, 경도: ${viewModel.lat.value}",
+                    modifier = Modifier
+                        .weight(1f)
+                        .padding(10.dp),
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.secondary
                 )
             }
         }
+
     }
 }
 
@@ -128,7 +142,13 @@ private suspend fun showEditSnackBar(
     context: Context,
     value: Boolean
 ) {
-    if(value) {
+
+    // snackbar가 존재한다면 삭제
+    if (snackbarHostState.currentSnackbarData != null) {
+        snackbarHostState.currentSnackbarData?.dismiss()
+    }
+
+    if (value) {
         snackbarHostState.showSnackbar(
             message = context.getString(R.string.txt_editon),
             duration = SnackbarDuration.Short,
@@ -142,3 +162,4 @@ private suspend fun showEditSnackBar(
         )
     }
 }
+

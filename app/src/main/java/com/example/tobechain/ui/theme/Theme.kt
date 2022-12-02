@@ -1,13 +1,13 @@
 package com.example.tobechain.ui.theme
 
 import android.app.Activity
+import android.app.UiModeManager
+import android.content.Context
+import android.content.res.Configuration
 import android.os.Build
+import android.util.Log
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.darkColorScheme
-import androidx.compose.material3.dynamicDarkColorScheme
-import androidx.compose.material3.dynamicLightColorScheme
-import androidx.compose.material3.lightColorScheme
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.graphics.compositeOver
@@ -171,9 +171,22 @@ fun tobechainTheme(
         }
     }
 
+    // 다크 모드확인
+    val isDarkMode = isSystemInDarkTheme()
+    Log.d("isDarkMode", isDarkMode.toString())
+
+    // 다크모드 세팅
+    val uiModeManager = LocalContext.current.getSystemService(Context.UI_MODE_SERVICE) as UiModeManager
+    uiModeManager.nightMode = if (isDarkMode) {
+        Configuration.UI_MODE_NIGHT_YES
+    } else {
+        Configuration.UI_MODE_NIGHT_NO
+    }
+
     MaterialTheme(
         colorScheme = colorScheme,
         typography = AppTypography,
+        //shapes = RoundShapes,
         content = content
     )
 }

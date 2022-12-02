@@ -22,6 +22,7 @@ object Dependency {
     const val ESPRESSO_CORE_VERSION = "3.5.0"
 
     object AndroidX {
+        const val APPCOMPAT = "androidx.appcompat:appcompat:$COMPAT_VERSION"
         const val CORE_KTX = "androidx.core:core-ktx:$KTX_CORE_VERSION"
         const val ACTIVITY_COMPOSE = "androidx.activity:activity-compose:1.3.1"
         const val LIFE_CYCLE = "androidx.lifecycle:lifecycle-runtime-ktx:2.3.1"
@@ -46,8 +47,15 @@ object Dependency {
         const val HILT_COMPILER = "com.google.dagger:hilt-android-compiler:$HILT_VERSION"
     }
 
-    object Map {
-        const val CARTO_MAP_SDK = "com.carto:carto-mobile-sdk:4.4.6@aar"
+    object GIS_ENGINE {
+        const val CARTO_MAP_SDK = "com.carto:carto-mobile-sdk:4.4.7@aar"
+
+        const val GEOTOOLS_MAIN = "org.geotools:gt-main:27.0"
+        const val GEOTOOLS_SWING = "org.geotools:gt-swing:27.0"
+        const val GEOTOOLS_GEOJSON = "org.geotools:gt-geojson:27.0"
+        const val GEOTOOLS_SHAPEFILE = "org.geotools:gt-shapefile:27.0"
+        const val GEOTOOLS_HSQL = "org.geotools:gt-epsg-hsql:27.0"
+        const val GEOTOOLS_OPENGIS = "org.geotools:gt-opengis:11-beta"
     }
 
     object UI {

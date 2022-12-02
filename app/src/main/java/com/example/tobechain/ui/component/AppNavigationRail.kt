@@ -13,16 +13,18 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.tobechain.R
+import com.example.tobechain.map.MapViewModel
+import com.example.tobechain.ui.theme.notossanskr
 
 @Composable
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 fun TobeChainNavigationRail(
+    viewModel: MapViewModel,
     modifier: Modifier,
     iconItems: List<ImageVector>,
     menuItems: List<String>,
     selectedItem: MutableState<ImageVector>,
 ) {
-
     Row {
         NavigationRail(
             modifier = modifier,
@@ -41,12 +43,13 @@ fun TobeChainNavigationRail(
         ) {
             iconItems.forEachIndexed { index, item ->
                 NavigationRailItem(
+                    modifier = Modifier.padding(8.dp),
                     icon = {
                         //BadgedBox(badge = { Badge { Text("8") } }) {
-                            Icon(
-                                item,
-                                contentDescription = menuItems[index]
-                            )
+                        Icon(
+                            item,
+                            contentDescription = menuItems[index]
+                        )
                         //}
                     },
                     selected = selectedItem.value == item,
@@ -54,13 +57,20 @@ fun TobeChainNavigationRail(
                         selectedItem.value = item
                         Log.d("debug", menuItems[index])
                     },
-                    label = { Text(menuItems[index]) },
+                    label = {
+                        Text(
+                            modifier = Modifier.padding(top = 30.dp),
+                            text = menuItems[index],
+                            fontFamily = notossanskr
+
+                        )
+                    },
                     alwaysShowLabel = false
                 )
             }
             Spacer(Modifier.weight(1f))
         }
 
-        showMapView()
+        TobeChainExplodedView(viewModel)
     }
 }
