@@ -83,16 +83,7 @@ fun TobeChainExplodedView(viewModel: MapViewModel) {
 
                     BaseMap.run {
                         initMap(context, view, viewModel)
-                        //explodedView(context, explodedViewSource, createPolygonArr)
-                        //createGeoJSONLayer(context, view)
                     }
-
-                    //BaseMap.addMarker(projection, view)
-                    //BaseMap.addPoint(projection, view)
-                    //BaseMap.addLine(projection, view)
-                    //BaseMap.addPolygon(projection, view)
-                    //BaseMap.addText(projection, view)
-
                 }
             }
         }

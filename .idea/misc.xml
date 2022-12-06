@@ -10,7 +10,123 @@
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$" />
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="corretto-11" project-jdk-type="JavaSDK">
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/pom.xml" />
+      </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/build/maven/jar-collector/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/build/maven/javadoc/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/build/maven/jjtree-javacc/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/build/maven/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/build/maven/xmlcodegen/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/build/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/extension/app-schema/app-schema-resolver/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/extension/app-schema/app-schema/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/extension/app-schema/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/extension/app-schema/sample-data-access/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/extension/brewer/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/extension/complex/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/extension/graph/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/extension/grid/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/extension/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/extension/transform/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/extension/validation/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/extension/wms/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/extension/xsd/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/extension/xsd/xsd-core/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/extension/xsd/xsd-csw/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/extension/xsd/xsd-fes/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/extension/xsd/xsd-filter/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/extension/xsd/xsd-gml2/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/extension/xsd/xsd-gml3/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/extension/xsd/xsd-kml/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/extension/xsd/xsd-ows/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/extension/xsd/xsd-sld/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/extension/xsd/xsd-wcs/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/extension/xsd/xsd-wfs/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/extension/xsd/xsd-wms/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/extension/xsd/xsd-wps/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/library/api/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/library/coverage/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/library/cql/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/library/data/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/library/jdbc/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/library/main/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/library/metadata/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/library/opengis/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/library/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/library/referencing/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/library/render/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/library/sample-data/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/library/xml/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/ogc/net.opengis.csw/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/ogc/net.opengis.fes/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/ogc/net.opengis.ows/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/ogc/net.opengis.wcs/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/ogc/net.opengis.wfs/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/ogc/net.opengis.wps/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/ogc/org.w3.xlink/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/ogc/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/plugin/arcgrid/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/plugin/arcsde/common/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/plugin/arcsde/datastore/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/plugin/arcsde/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/plugin/arcsde/sde-dummy/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/plugin/charts/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/plugin/coverage-multidim/coverage-api/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/plugin/coverage-multidim/grib/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/plugin/coverage-multidim/netcdf/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/plugin/coverage-multidim/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/plugin/epsg-extension/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/plugin/epsg-hsql/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/plugin/epsg-postgresql/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/plugin/epsg-wkt/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/plugin/feature-pregeneralized/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/plugin/geotiff/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/plugin/grassraster/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/plugin/gtopo30/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/plugin/image/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/plugin/imageio-ext-gdal/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/plugin/imagemosaic-jdbc/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/plugin/imagemosaic/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/plugin/imagepyramid/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/plugin/jdbc/jdbc-db2/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/plugin/jdbc/jdbc-h2/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/plugin/jdbc/jdbc-mysql/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/plugin/jdbc/jdbc-oracle/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/plugin/jdbc/jdbc-postgis/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/plugin/jdbc/jdbc-spatialite/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/plugin/jdbc/jdbc-sqlserver/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/plugin/jdbc/jdbc-teradata/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/plugin/jdbc/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/plugin/jp2k/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/plugin/ogr/ogr-bridj/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/plugin/ogr/ogr-core/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/plugin/ogr/ogr-jni/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/plugin/ogr/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/plugin/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/plugin/property/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/plugin/referencing3D/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/plugin/shapefile/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/plugin/svg/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/unsupported/geojson/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/unsupported/geopkg/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/unsupported/mbtiles/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/unsupported/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/unsupported/process/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/unsupported/swing/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/unsupported/swt/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/unsupported/wfs-ng/pom.xml" />
+        <option value="$PROJECT_DIR$/../geotools-android/geotools-android-master/modules/unsupported/wfs/pom.xml" />
+      </set>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

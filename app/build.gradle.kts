@@ -1,3 +1,5 @@
+import org.gradle.api.internal.tasks.userinput.UserInputReader
+import org.jetbrains.kotlin.config.JvmAnalysisFlags.useIR
 import java.util.Properties
 
 plugins {
@@ -69,6 +71,11 @@ android {
     }
     kotlinOptions {
         jvmTarget = AppConfig.JAVA_VERSION
+        freeCompilerArgs += listOf(
+            "-P",
+            "plugin:androidx.compose.compiler.plugins.kotlin:suppressKotlinVersionCompatibilityCheck=true"
+        )
+
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.3.2"
@@ -79,8 +86,19 @@ android {
     }
     packagingOptions {
         resources {
-            excludes += "META-INF/AL2.0"
-            excludes += "META-INF/LGPL2.1"
+//            excludes += "META-INF/AL2.0"
+//            excludes += "META-INF/LGPL2.1"
+//            excludes += "META-INF/registryFile.jai"
+//            excludes += "META-INF/registryFile.jaiext"
+//            excludes += "AndroidManifest.xml"
+//            excludes += "plugin.xml"
+//            excludes += "about.ini"
+//            excludes += "about.mappings"
+//            excludes += "modeling32.png"
+//            excludes += "about.properties"
+//            excludes += "plugin.properties"
+//            excludes += "it/geosolutions/jaiext/resources/image/it.geosolutions.jaiext.scale.properties"
+//            excludes += "tec/uom/se/format/messages.properties"
         }
     }
     lint {
@@ -97,6 +115,8 @@ dependencies {
     implementation (Dependency.AndroidX.CORE_KTX)
     implementation (Dependency.AndroidX.LIFE_CYCLE)
     implementation (Dependency.AndroidX.ACTIVITY_COMPOSE)
+    implementation (Dependency.AndroidX.NAVIGAION)
+    implementation (Dependency.AndroidX.PREFERENCE)
 
     // Jetpack Compose
     implementation(Dependency.Compose.ANIMATION)
@@ -110,9 +130,10 @@ dependencies {
     implementation(Dependency.Compose.UI_TOOLING_PREVIEW)
     implementation(Dependency.Compose.UI_TOOLING)
 
+    // UI
     implementation(Dependency.UI.LOTTIE_COMPOSE)
 
-    // Hilt
+    // Google
     implementation(Dependency.Google.HILT)
     kapt(Dependency.Google.HILT_COMPILER)
 

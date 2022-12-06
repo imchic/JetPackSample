@@ -15,6 +15,9 @@ object Dependency {
     // HILT
     const val HILT_VERSION = "2.44"
 
+    // GEOTOOLS
+    const val GEOTOOLS_VERSION = "16.1"
+
     // TEST
     const val JUNIT_VERSION = "1.1.4"
 
@@ -26,6 +29,8 @@ object Dependency {
         const val CORE_KTX = "androidx.core:core-ktx:$KTX_CORE_VERSION"
         const val ACTIVITY_COMPOSE = "androidx.activity:activity-compose:1.3.1"
         const val LIFE_CYCLE = "androidx.lifecycle:lifecycle-runtime-ktx:2.3.1"
+        const val NAVIGAION = "androidx.navigation:navigation-compose:2.4.0-alpha10"
+        const val PREFERENCE = "androidx.preference:preference-ktx:1.1.1"
     }
 
     object Compose {
@@ -40,6 +45,7 @@ object Dependency {
 
         const val UI_TOOLING_PREVIEW = "androidx.compose.ui:ui-tooling-preview:$COMPOSE_VERSION"
         const val UI_TOOLING = "androidx.compose.ui:ui-tooling:$COMPOSE_VERSION"
+
     }
 
     object Google {
@@ -50,12 +56,15 @@ object Dependency {
     object GIS_ENGINE {
         const val CARTO_MAP_SDK = "com.carto:carto-mobile-sdk:4.4.7@aar"
 
-        const val GEOTOOLS_MAIN = "org.geotools:gt-main:27.0"
-        const val GEOTOOLS_SWING = "org.geotools:gt-swing:27.0"
-        const val GEOTOOLS_GEOJSON = "org.geotools:gt-geojson:27.0"
-        const val GEOTOOLS_SHAPEFILE = "org.geotools:gt-shapefile:27.0"
-        const val GEOTOOLS_HSQL = "org.geotools:gt-epsg-hsql:27.0"
-        const val GEOTOOLS_OPENGIS = "org.geotools:gt-opengis:11-beta"
+//        "org.geotools:gt-main:14.3"
+//        "org.geotools:gt-data:14.3"
+//        "org.geotools:gt-shapefile:14.3"
+//        "org.geotools:gt-epsg-hsql:14.3"
+
+        const val GEOTOOLS_MAIN = "org.geotools:gt-main:$GEOTOOLS_VERSION"
+        const val GEOTOOLS_DATA = "org.geotools:gt-data:$GEOTOOLS_VERSION"
+        const val GEOTOOLS_SHAPEFILE = "org.geotools:gt-shapefile:$GEOTOOLS_VERSION"
+        const val GEOTOOLS_EPSG_HSQL = "org.geotools:gt-epsg-hsql:$GEOTOOLS_VERSION"
     }
 
     object UI {

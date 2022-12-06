@@ -1,5 +1,6 @@
 package com.example.tobechain.map
 
+import BaseException
 import android.content.Context
 import android.util.Log
 import com.carto.core.MapPos
@@ -10,13 +11,11 @@ import com.carto.datasources.GeoJSONVectorTileDataSource
 import com.carto.datasources.LocalVectorDataSource
 import com.carto.geometry.FeatureCollection
 import com.carto.geometry.GeoJSONGeometryReader
-import com.carto.geometry.MultiPolygonGeometry
+import com.carto.geometry.Geometry
 import com.carto.layers.EditableVectorLayer
 import com.carto.layers.Layer
 import com.carto.layers.VectorLayer
 import com.carto.layers.VectorTileLayer
-import com.carto.projections.EPSG3857
-import com.carto.projections.EPSG4326
 import com.carto.projections.Projection
 import com.carto.styles.*
 import com.carto.ui.MapView
@@ -24,7 +23,7 @@ import com.carto.utils.AssetUtils
 import com.carto.utils.ZippedAssetPackage
 import com.carto.vectorelements.*
 import com.carto.vectortiles.MBVectorTileDecoder
-
+import com.example.tobechain.map.listener.VectorElementSelectEventListener
 
 object BaseMap {
 
@@ -62,7 +61,7 @@ object BaseMap {
     var clickPosArr = mutableListOf<MapPos>()
 
     // listener
-    //var selectListener: VectorElementSelectEventListener? = null
+    var selectListener: VectorElementSelectEventListener? = null
 
     // feature
     var featureCollection: FeatureCollection? = null
@@ -76,20 +75,30 @@ object BaseMap {
     fun initMap(context: Context, view: MapView, viewModel: MapViewModel) {
 
         _mapView = view
-        //_projection = _mapView.options.baseProjection
-        _projection = EPSG4326()
+        _projection = _mapView.options.baseProjection
+        //_projection = EPSG4326()
 
         val mapOpt = _mapView.options
 
-        _mapView.run {
-            setZoom(18.0f, 0.0f)
-            setFocusPos(_projection.fromWgs84(MapPos(24.643076, 59.420502)), 0.5F)
-        }
+        setInitZoomAndPos(18.0f, MapPos(55.880251, 272.365759), 0.5F)
 
         mapOpt.apply {
             watermarkScale = 0.0f
             tiltRange = MapRange(90f, 90f)
             isRotatable = false
+        }
+
+        // change coordinate system
+        try {
+
+
+
+        } catch (e: Exception) {
+            e.printStackTrace()
+
+
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
 
         explodedViewSource = LocalVectorDataSource(_projection)
@@ -102,30 +111,41 @@ object BaseMap {
         val layerArr = mutableListOf(explodedViewLayer, groupLayer, floorUpLayer, addLineLayer, addHoLayer)
         setLayer(_mapView, layerArr)
 
-//        runCatching {
-//            explodedView(context, explodedViewSource, createPolygonArr)
-//        }.fold(
-//            onSuccess = {
-//                Log.d("BaseMap", it.toString())
-//                when (it) {
-//                    true -> {
-//                        Log.d("BaseMap", "explodedView success")
-//                    }
-//
-//                    false -> {
-//                        Log.d("BaseMap", "explodedView fail")
-//                    }
-//                }
-//            },
-//            onFailure = { it: Throwable ->
-//                Log.e("BaseMap", it.toString())
-//            }
-//        )
+        runCatching {
+            explodedView(context, explodedViewSource, createPolygonArr)
+        }.fold(
+            onSuccess = {
+                Log.d("BaseMap", it.toString())
+                when (it) {
+                    true -> {
+                        Log.d("BaseMap", "explodedView success")
+                    }
 
-        this._mapView.mapEventListener =
-            MapCustomEventListener(viewModel, _mapView)
+                    false -> {
+                        Log.d("BaseMap", "explodedView fail")
+                    }
+                }
+            },
+            onFailure = { it: Throwable ->
+                Log.e("BaseMap", it.toString())
+            }
+        )
 
+        this._mapView.mapEventListener = MapCustomEventListener(viewModel, _mapView)
 
+    }
+
+    /**
+     * 최초 줌 지정 및 위치 지정
+     * @param zoom Float
+     * @param pos MapPos
+     * @param duration Float
+     */
+    private fun setInitZoomAndPos(zoom: Float, pos: MapPos, duration: Float) {
+        _mapView.apply {
+            setZoom(zoom, duration)
+            setFocusPos(pos, duration)
+        }
     }
 
     /**
@@ -165,7 +185,6 @@ object BaseMap {
                     layers[index] = EditableVectorLayer(source)
                 }
 
-                else -> throw Exception("잘못된 레이어 명입니다.")
             }
 
             setLayerName(layers[index], "name", Variant(name.value))
@@ -344,7 +363,7 @@ object BaseMap {
         stream.read(buffer)
         stream.close()
         val json = String(buffer, charset("UTF-8"))
-        Log.i("json=>", json)
+        //Log.i("json=>", json)
         val reader = GeoJSONGeometryReader()
 
         //projection 변경
@@ -368,27 +387,25 @@ object BaseMap {
             polygonArr.clear()
 
             val elements = VectorElementVector()
+            val features = BaseMap.getGeoJsonFeature(context, "dusan.geojson")
 
-            val features = getGeoJsonFeature(context, "dusan.geojson")
-            val total = features?.featureCount!!
+            if (features != null) {
 
-            for (i in 0 until total) {
+                val total = features.featureCount
 
-                features.getFeature(i).apply {
-                    val geometry = geometry as MultiPolygonGeometry
-                    val properties = properties
+                //activity.vm.setExplodedCnt(features.featureCount)
 
-                    val hoNm: String? = properties.getObjectElement("ho_nm").string
-                    val huNum: String? = properties.getObjectElement("hu_num").string
-                    val cPoedTxt: String? = properties.getObjectElement("c_poed_txt").string
+                for (i in 0 until total) {
 
-                    for (j in 0 until geometry.geometryCount) {
+                    features.getFeature(i).apply {
+                        val geometry = features.getFeature(i).geometry as Geometry
+                        val properties = properties
 
-                        val south = MapPos(geometry.getGeometry(j).bounds.min.x, geometry.getGeometry(j).bounds.min.y)
-                        val west = MapPos(geometry.getGeometry(j).bounds.max.x, geometry.getGeometry(j).bounds.min.y)
+                        val south = MapPos(geometry.bounds.min.x, geometry.bounds.min.y)
+                        val west = MapPos(geometry.bounds.max.x, geometry.bounds.min.y)
 
-                        val north = MapPos(geometry.getGeometry(j).bounds.max.x, geometry.getGeometry(j).bounds.max.y)
-                        val east = MapPos(geometry.getGeometry(j).bounds.min.x, geometry.getGeometry(j).bounds.max.y)
+                        val north = MapPos(geometry.bounds.max.x, geometry.bounds.max.y)
+                        val east = MapPos(geometry.bounds.min.x, geometry.bounds.max.y)
 
                         val explodedVector = MapPosVector()
                         explodedVector.apply { add(south); add(west); add(north); add(east) }
@@ -397,89 +414,68 @@ object BaseMap {
                         createPolygon = Polygon(
                             explodedVector,
                             MapStyle.setPolygonStyle(
-                                MapColor.GREEN,
-                                MapColor.GREEN,
+                                MapColor.TEAL,
+                                MapColor.TEAL,
                                 2F
                             )
                         )
 
-                        createPolygon.setMetaDataElement("ho", Variant(hoNm))
-                        createPolygon.setMetaDataElement("hu", Variant(huNum))
-                        createPolygon.setMetaDataElement("cPoedTxt", Variant(cPoedTxt))
-                        createPolygon.setMetaDataElement("select", Variant("n"))
+                        createPolygon.run {
+                            setPropertiesStringValue(properties, MapConst.PROPERTIES_VALUE_ARR, this)
+                            setMetaDataElement("SELECT", Variant("n"))
+                            setMetaDataElement("CUSTOM_INDEX", Variant(i.toString()))
 
-                        polygonArr.add(createPolygon)
-                        elements.add(createPolygon)
+                            polygonArr.add(this)
+                            elements.add(this)
+                        }
 
-//                        LogUtil.d("min => ${createPolygon.geometry.bounds.min}")
-//                        LogUtil.d("max => ${createPolygon.geometry.bounds.max}")
+                        val minusNum = 2
 
-//                        LogUtil.d("min => ${createPolygon.geometry.bounds.min}")
-//                        LogUtil.d("max => ${createPolygon.geometry.bounds.max}")
-
-                        val centerPos =
-                            MapPos(createPolygon.geometry.centerPos.x, createPolygon.geometry.centerPos.y + 230000)
+                        val centerPos = MapPos(createPolygon.geometry.centerPos.x, createPolygon.geometry.centerPos.y)
                         val middlePos =
-                            MapPos(createPolygon.geometry.centerPos.x, createPolygon.geometry.centerPos.y - 50000)
-                        val botPos = MapPos(createPolygon.geometry.centerPos.x, middlePos.y - 300000)
+                            MapPos(createPolygon.geometry.centerPos.x, createPolygon.geometry.centerPos.y - minusNum)
 
                         elements.add(
                             Text(
                                 centerPos,
-                                MapStyle.setTextStyle(MapColor.BLACK, 30F),
-                                hoNm
+                                MapStyle.setTextStyle(MapColor.BLACK, MapConst.FONT_SIZE),
+                                getPropertiesStringValue(createPolygon, "HO_NM")
                             )
                         )
                         elements.add(
                             Text(
                                 middlePos,
-                                MapStyle.setTextStyle(MapColor.RED, 32F),
-                                huNum
+                                MapStyle.setTextStyle(MapColor.RED, MapConst.FONT_SIZE),
+                                getPropertiesStringValue(createPolygon, "HU_NUM")
                             )
                         )
-                        elements.add(
-                            Text(
-                                botPos,
-                                MapStyle.setTextStyle(MapColor.BLACK, 30F),
-                                cPoedTxt
-                            )
-                        )
+
                     }
+
 
                 }
 
-
+                source?.addAll(elements)
+                isExploded = true
+            } else {
+                isExploded = false
             }
 
-            source?.addAll(elements)
-            isExploded = true
 
-        } catch (e: Exception) {
-            Log.e("error", e.message.toString())
+        } catch (e: BaseException) {
             isExploded = false
         }
 
         return isExploded
     }
 
-    fun createGeoJSONLayer(context: Context, mapView: MapView) {
-
-        //val dataSource = GeoJSONVectorTileDataSource(0, mapView.zoom.toInt())
+    fun getCustomStyleSetLayer(context: Context, mapView: MapView) {
 
         try {
-//            val `is`: InputStream = context.assets.open("dusan.geojson")
-//            val sb = StringBuilder()
-//            var ch: Int
-//            while (`is`.read().also { ch = it } != -1) {
-//                sb.append(ch.toChar())
-//            }
-//            val data: Variant = Variant.fromString(sb.toString())
-//            val layerIdx = dataSource.createLayer("mbtiles")
-//            dataSource.setLayerGeoJSON(layerIdx, data)
 
             val dataSource = GeoJSONVectorTileDataSource(0, 20)
             val geoJsonFeatuerCollection = getGeoJsonFeature(context, "dusan.geojson")
-            dataSource.setLayerFeatureCollection(0, EPSG3857(), geoJsonFeatuerCollection)
+            dataSource.setLayerFeatureCollection(0, _projection, geoJsonFeatuerCollection)
 
             val styleAsset = ZippedAssetPackage(AssetUtils.loadAsset("cartostyles-v2.zip"))
             val styleSet = CompiledStyleSet(styleAsset, "darkmatter")
@@ -494,42 +490,136 @@ object BaseMap {
 
     }
 
-//    fun getShape(context: Context, mapView: MapView){
-//
-//        // 앱 내 저장소에 있는 mbtiles 파일을 가져온다.
-//        val shapePath = (context as MainActivity).getExternalFilesDir("/tobeChain")?.absolutePath
-//
-//        // folder가 없으면 생성
-//        if (shapePath != null) {
-//            val file = File(shapePath)
-//            if (!file.exists()) {
-//                file.mkdirs()
-//            }
-//        }
-//
-//        //val cartoCSSStyleSet = CartoCSSStyleSet("cartostyles-custom.zip")
-//        //val decoder = MBVectorTileDecoder(cartoCSSStyleSet)
-//
-//
-//        val styleAsset: BinaryData = AssetUtils.loadAsset("cartostyles-custom.zip")
-//        val styleAssetPackage: AssetPackage = ZippedAssetPackage(styleAsset)
-//        val styleSet = CompiledStyleSet(styleAssetPackage)
-//        val tileDecoder = MBVectorTileDecoder(styleSet)
-//        //val dataSource: TileDataSource = CartoOnlineTileDataSource("voyager")
-//
-//        val dataSource = MBTilesTileDataSource(10, 18,  shapePath)
-//        val currentLayer = VectorTileLayer(dataSource, tileDecoder)
-//
-//        mapView.layers.add(currentLayer)
-//
-//
-//
-//        //val vectorTileDecoder = MBVectorTileDecoder(cartoCSSStyleSet)
-//        //val scheme = MBTilesScheme.MBTILES_SCHEME_TMS
-//
-//        //val vectorTileLayer = MBTilesTileDataSource(12, 12, shapePath, scheme)
-//        //mapView.layers.add(VectorTileLayer(vectorTileLayer, vectorTileDecoder))
-//
-//    }
+    /**
+     * 객체 선택 및 비선택
+     * @param geometry Geometry
+     */
+    fun select(geometry: Geometry, viewModel: MapViewModel) {
+        createPolygonArr
+            .filter { it.geometry == geometry }
+            .map {
+                when (getPropertiesStringValue(it, "SELECT")) {
+                    "n" -> {
+                        it.style = MapStyle.setPolygonStyle(
+                            MapColor.RED,
+                            MapColor.RED,
+                            2F
+                        )
+                        getPropertiesStringValueArr(it, viewModel)
 
+                        it.setMetaDataElement("SELECT", Variant("y"))
+                        selectPolygonArr.add(it)
+                    }
+
+                    "y" -> {
+                        it.style = MapStyle.setPolygonStyle(
+                            MapColor.TEAL,
+                            MapColor.TEAL,
+                            2F
+                        )
+                        it.setMetaDataElement("SELECT", Variant("n"))
+                        selectPolygonArr.remove(it)
+                    }
+
+                    else -> throw BaseException("잘못된 SELECT EVENT 발생")
+                }
+
+            }
+
+        viewModel.setSelectCnt(selectPolygonArr.size)
+        //Log.d("selectPolygonArr", "선택된 전개도 폴리곤의 개수 : ${selectPolygonArr.size}")
+
+    }
+
+    /**
+     * 부모영역 내 자식 영역 포함 여부 확인 (폴리곤)
+     * @param parents MutableList<Polygon>
+     * @param child MutableList<Polygon>
+     */
+    fun contains(parents: MutableList<Polygon>, child: MutableList<Polygon>) {
+
+        val bool = child.isNotEmpty()
+
+        runCatching {
+            if (!bool) throw BaseException("그룹영역이 지정되지 않았습니다.")
+        }.onSuccess {
+            clickPosArr.clear()
+            containsDataSource.clear()
+
+            group(parents, child)
+
+        }.onFailure {
+            Log.e("error", "group status: $bool, $it")
+        }
+    }
+
+    /**
+     * 부모 영역 내 포함된 그룹영역
+     * @param parents MutableList<Polygon>
+     * @param child MutableList<Polygon>
+     */
+    private fun group(parents: MutableList<Polygon>, child: MutableList<Polygon>) {
+        parents
+            .filter { child.contains(it) }
+            .map {
+                it.style = MapStyle.setPolygonStyle(
+                    MapColor.PURPLE,
+                    MapColor.PURPLE,
+                    2F
+                )
+            }
+    }
+
+    /**
+     * 폴리곤 내 프로퍼티 값 세팅하기
+     * @param properties Variant
+     * @param arr ArrayList<String>
+     * @param polygon Polygon
+     */
+    fun setPropertiesStringValue(properties: Variant, arr: ArrayList<String>, polygon: Polygon) {
+        arr.map {
+            val getValue = properties.getObjectElement(it).string
+            polygon.setMetaDataElement(it, Variant(getValue))
+        }
+    }
+
+    fun getPropertiesStringValue(polygon: Polygon, value: String): String {
+        return polygon.getMetaDataElement(value).string
+    }
+
+    private fun getPropertiesStringValueArr(polygon: Polygon, viewModel: MapViewModel) {
+
+        var result = ""
+
+        for ((key, value) in MapConst.PROPERTIES_VALUE_MAP) {
+            result += "$key : ${polygon.metaData.get(value).string} \n"
+        }
+
+        val arr = ArrayList<String>() // alert data
+        arr.run {
+            add("레이어 정보")
+            add(result)
+        }
+
+        val isLayerShowToggle = viewModel.editModeStatus.value
+
+        runCatching {
+            if (!isLayerShowToggle) throw BaseException("레이어 View 상태값 : False")
+        }.fold(
+            onSuccess = {
+                //activity.vm.showAlertDialog(arr)
+            },
+            onFailure = { Log.e("error", it.toString()) }
+        )
+    }
+}
+
+fun getPolygonElementCnt(source: LocalVectorDataSource?): Int {
+    var resultCnt = 0
+    for (i in 0 until source!!.all.size()) {
+        when (source.all[i.toInt()]) {
+            is Polygon -> resultCnt++
+        }
+    }
+    return resultCnt
 }

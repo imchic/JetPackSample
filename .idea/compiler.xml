@@ -1,6 +1,113 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
-    <bytecodeTargetLevel target="11" />
+    <bytecodeTargetLevel target="11">
+      <module name="app-schema" target="1.7" />
+      <module name="arcsde-plugin" target="1.7" />
+      <module name="build" target="1.7" />
+      <module name="extension" target="1.7" />
+      <module name="geotools" target="1.7" />
+      <module name="gt-api" target="1.7" />
+      <module name="gt-app-schema" target="1.7" />
+      <module name="gt-app-schema-resolver" target="1.7" />
+      <module name="gt-arcgrid" target="1.7" />
+      <module name="gt-arcsde" target="1.7" />
+      <module name="gt-arcsde-common" target="1.7" />
+      <module name="gt-brewer" target="1.7" />
+      <module name="gt-charts" target="1.7" />
+      <module name="gt-complex" target="1.7" />
+      <module name="gt-coverage" target="1.7" />
+      <module name="gt-coverage-api" target="1.7" />
+      <module name="gt-coverage-multidim" target="1.7" />
+      <module name="gt-cql" target="1.7" />
+      <module name="gt-data" target="1.7" />
+      <module name="gt-epsg-extension" target="1.7" />
+      <module name="gt-epsg-hsql" target="1.7" />
+      <module name="gt-epsg-postgresql" target="1.7" />
+      <module name="gt-epsg-wkt" target="1.7" />
+      <module name="gt-feature-pregeneralized" target="1.7" />
+      <module name="gt-geojson" target="1.7" />
+      <module name="gt-geopkg" target="1.7" />
+      <module name="gt-geotiff" target="1.7" />
+      <module name="gt-graph" target="1.7" />
+      <module name="gt-grassraster" target="1.7" />
+      <module name="gt-grib" target="1.7" />
+      <module name="gt-grid" target="1.7" />
+      <module name="gt-gtopo30" target="1.7" />
+      <module name="gt-image" target="1.7" />
+      <module name="gt-imageio-ext-gdal" target="1.7" />
+      <module name="gt-imagemosaic" target="1.7" />
+      <module name="gt-imagemosaic-jdbc" target="1.7" />
+      <module name="gt-imagepyramid" target="1.7" />
+      <module name="gt-jdbc (1) (org.geotools)" target="1.7" />
+      <module name="gt-jdbc (2) (org.geotools.jdbc)" target="1.7" />
+      <module name="gt-jdbc-db2" target="1.7" />
+      <module name="gt-jdbc-h2" target="1.7" />
+      <module name="gt-jdbc-mysql" target="1.7" />
+      <module name="gt-jdbc-oracle" target="1.7" />
+      <module name="gt-jdbc-postgis" target="1.7" />
+      <module name="gt-jdbc-spatialite" target="1.7" />
+      <module name="gt-jdbc-sqlserver" target="1.7" />
+      <module name="gt-jdbc-teradata" target="1.7" />
+      <module name="gt-jp2k" target="1.7" />
+      <module name="gt-main" target="1.7" />
+      <module name="gt-mbtiles" target="1.7" />
+      <module name="gt-metadata" target="1.7" />
+      <module name="gt-netcdf" target="1.7" />
+      <module name="gt-ogr" target="1.7" />
+      <module name="gt-ogr-bridj" target="1.7" />
+      <module name="gt-ogr-core" target="1.7" />
+      <module name="gt-ogr-jni" target="1.7" />
+      <module name="gt-opengis" target="1.7" />
+      <module name="gt-process" target="1.7" />
+      <module name="gt-property" target="1.7" />
+      <module name="gt-referencing" target="1.7" />
+      <module name="gt-referencing3D" target="1.7" />
+      <module name="gt-render" target="1.7" />
+      <module name="gt-sample-data" target="1.7" />
+      <module name="gt-sample-data-access" target="1.7" />
+      <module name="gt-sde-dummy" target="1.7" />
+      <module name="gt-shapefile" target="1.7" />
+      <module name="gt-svg" target="1.7" />
+      <module name="gt-swing" target="1.7" />
+      <module name="gt-swt" target="1.7" />
+      <module name="gt-transform" target="1.7" />
+      <module name="gt-validation" target="1.7" />
+      <module name="gt-wfs" target="1.7" />
+      <module name="gt-wfs-ng" target="1.7" />
+      <module name="gt-wms" target="1.7" />
+      <module name="gt-xml" target="1.7" />
+      <module name="gt-xsd-core" target="1.7" />
+      <module name="gt-xsd-csw" target="1.7" />
+      <module name="gt-xsd-fes" target="1.7" />
+      <module name="gt-xsd-filter" target="1.7" />
+      <module name="gt-xsd-gml2" target="1.7" />
+      <module name="gt-xsd-gml3" target="1.7" />
+      <module name="gt-xsd-kml" target="1.7" />
+      <module name="gt-xsd-ows" target="1.7" />
+      <module name="gt-xsd-sld" target="1.7" />
+      <module name="gt-xsd-wcs" target="1.7" />
+      <module name="gt-xsd-wfs" target="1.7" />
+      <module name="gt-xsd-wms" target="1.7" />
+      <module name="gt-xsd-wps" target="1.7" />
+      <module name="jar-collector" target="1.7" />
+      <module name="javadoc" target="1.7" />
+      <module name="jjtree-javacc" target="1.7" />
+      <module name="library" target="1.7" />
+      <module name="maven" target="1.7" />
+      <module name="modules" target="1.7" />
+      <module name="net.opengis.csw" target="1.7" />
+      <module name="net.opengis.fes" target="1.7" />
+      <module name="net.opengis.ows" target="1.7" />
+      <module name="net.opengis.wcs" target="1.7" />
+      <module name="net.opengis.wfs" target="1.7" />
+      <module name="net.opengis.wps" target="1.7" />
+      <module name="ogc" target="1.7" />
+      <module name="org.w3.xlink" target="1.7" />
+      <module name="plugin" target="1.7" />
+      <module name="unsupported" target="1.7" />
+      <module name="xmlcodegen" target="1.7" />
+      <module name="xsd" target="1.7" />
+    </bytecodeTargetLevel>
   </component>
 </project>

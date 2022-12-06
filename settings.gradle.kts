@@ -16,7 +16,9 @@ dependencyResolutionManagement {
         }
         maven {
             url = uri("https://jitpack.io")
+            url = uri("http://download.osgeo.org/webdav/geotools/")
             url = uri ("https://repo.osgeo.org/repository/release/")
+            isAllowInsecureProtocol = true
         }
         flatDir { dirs("libs") }
     }

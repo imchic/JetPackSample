@@ -31,7 +31,8 @@ fun TobeMapAppBar(
     viewModel: MapViewModel
 ) {
 
-    val editModeStatus = remember { mutableStateOf(false) }
+    //val editModeStatus = remember { mutableStateOf(false) }
+    val editModeStatus = viewModel.editModeStatus
     val editCheckIcon: (@Composable () -> Unit)? = if (editModeStatus.value) {
         {
             Icon(
@@ -90,7 +91,7 @@ fun TobeMapAppBar(
                 modifier = Modifier.padding(10.dp),
                 checked = editModeStatus.value,
                 onCheckedChange = { check ->
-                    editModeStatus.value = check
+                    viewModel.setEditModeStatus(check)
                     scope?.launch {
                         snackbarHostState?.let { state ->
                             context?.let { mainContext ->

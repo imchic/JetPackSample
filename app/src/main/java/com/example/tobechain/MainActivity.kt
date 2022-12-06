@@ -22,6 +22,8 @@ import com.example.tobechain.map.BaseMap
 import com.example.tobechain.map.MapViewModel
 import com.example.tobechain.ui.component.TobeChainNavigationRail
 import com.example.tobechain.ui.theme.tobechainTheme
+import org.json.JSONArray
+import org.json.JSONObject
 
 
 class MainActivity : ComponentActivity() {
@@ -38,6 +40,9 @@ class MainActivity : ComponentActivity() {
 
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
+    /**
+     * TobeChain App
+     */
     private fun initTobeChainApp() {
 
         val navRailItemsIcon = listOf(
@@ -61,21 +66,19 @@ class MainActivity : ComponentActivity() {
         )
 
         val selectedItem = remember { mutableStateOf(navRailItemsIcon[0]) }
-
         val mapViewModel: MapViewModel by viewModels()
-        //val lifecycleOwner = this as LifecycleOwner
 
         Scaffold { innerPadding ->
             Column(
                 modifier = Modifier.fillMaxSize().padding(innerPadding)
             ) {
-                //showToolbar(context, drawerState, scope)
                 TobeChainNavigationRail(mapViewModel, Modifier.padding(innerPadding), navRailItemsIcon, navRailItemsText, selectedItem)
-                //setDrawerLayoutMaterial3(drawerState, scope, iconItems, menuItems, selectedItem, innerPadding)
             }
 
         }
+
     }
+
 
     @Preview
     @Composable
